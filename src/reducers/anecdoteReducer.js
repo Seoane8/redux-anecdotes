@@ -54,4 +54,12 @@ export const addAnecdote = anecdote => ({
 export const anecdotesSortedByVotes = state =>
   state.anecdotes.sort((a, b) => b.votes - a.votes)
 
+export const filterAnecdotes = (anecdotes, filter) =>
+  anecdotes
+    .filter(anecdote =>
+      anecdote.content
+        .toLowerCase()
+        .includes(filter.toLowerCase())
+    )
+
 export default reducer

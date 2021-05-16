@@ -1,12 +1,16 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { vote, anecdotesSortedByVotes } from '../reducers/anecdoteReducer'
+import { vote, anecdotesSortedByVotes, filterAnecdotes } from '../reducers/anecdoteReducer'
 import { addNotification, deleteNotification } from '../reducers/notificationReducer'
+import { getFilter } from '../reducers/filterReducer'
 
 const AnecdoteList = () => {
-  const anecdotes = useSelector(anecdotesSortedByVotes)
   const dispatch = useDispatch()
+
+  const filter = useSelector(getFilter)
+  const sortedAnecdotes = useSelector(anecdotesSortedByVotes)
+  const anecdotes = filterAnecdotes(sortedAnecdotes, filter)
 
   const handleVote = anecdote => {
     dispatch(vote(anecdote.id))
