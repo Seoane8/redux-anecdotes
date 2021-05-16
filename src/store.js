@@ -1,7 +1,13 @@
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import reducer from './reducers/anecdoteReducer'
+import anecdotes from './reducers/anecdoteReducer'
+import notification from './reducers/notificationReducer'
+
+const reducer = combineReducers({
+  anecdotes,
+  notification
+})
 
 const store = createStore(
   reducer,

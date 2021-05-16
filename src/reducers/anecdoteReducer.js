@@ -46,14 +46,12 @@ export const vote = id => {
   }
 }
 
-export const addAnecdote = anecdote => {
-  return {
-    type: 'ADD_ANECDOTE',
-    data: { anecdote: asObject(anecdote) }
-  }
-}
+export const addAnecdote = anecdote => ({
+  type: 'ADD_ANECDOTE',
+  data: { anecdote: asObject(anecdote) }
+})
 
 export const anecdotesSortedByVotes = state =>
-  state.sort((a, b) => b.votes - a.votes)
+  state.anecdotes.sort((a, b) => b.votes - a.votes)
 
 export default reducer

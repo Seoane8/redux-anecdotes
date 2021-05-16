@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { addAnecdote } from '../reducers/anecdoteReducer'
+import { addNotification, deleteNotification } from '../reducers/notificationReducer'
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch()
@@ -12,7 +13,12 @@ const AnecdoteForm = () => {
 
     dispatch(addAnecdote(anecdote))
 
+    dispatch(addNotification(`You have added '${anecdote}'`))
     setAnecdote('')
+    setInterval(
+      () => dispatch(deleteNotification()),
+      5000
+    )
   }
 
   return (
