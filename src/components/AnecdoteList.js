@@ -13,7 +13,7 @@ const AnecdoteList = () => {
   const anecdotes = filterAnecdotes(sortedAnecdotes, filter)
 
   const handleVote = anecdote => {
-    dispatch(vote(anecdote.id))
+    dispatch(vote(anecdote.id, anecdote.votes))
 
     dispatch(addNotification(`You voted '${anecdote.content}'`))
     setInterval(
