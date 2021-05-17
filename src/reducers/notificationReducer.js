@@ -2,23 +2,29 @@ const initialState = null
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_NOTIFICATION':
+    case 'SET_NOTIFICATION':
       return action.message
-    case 'DELETE_NOTIFICATION':
+    case 'CLEAR_NOTIFICATION':
       return initialState
     default:
       return state
   }
 }
 
-export const addNotification = message => ({
-  type: 'ADD_NOTIFICATION',
-  message
-})
+export const setNotification = (message, timeout) => async dispatch => {
+  dispatch({
+    type: 'SET_NOTIFICATION',
+    message
+  })
+  setInterval(
+    () => dispatch(clearNotification),
+    (timeout * 1000)
+  )
+}
 
-export const deleteNotification = () => ({
-  type: 'DELETE_NOTIFICATION'
-})
+const clearNotification = {
+  type: 'CLEAR_NOTIFICATION'
+}
 
 export const getNofication = state => state.notification
 
